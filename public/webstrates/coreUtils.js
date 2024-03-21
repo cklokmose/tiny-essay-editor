@@ -390,7 +390,7 @@ coreUtilsModule.setWidOnElement = (node, wid) => {
  * @return {Ops}             List of resulting operations.
  */
 coreUtilsModule.patchesToOps = function(path, oldValue, newValue) {
-	const dmp = new window.diffMatchPatch.diff_match_patch();
+	const dmp = new window.diffMatchPatch.default.diff_match_patch();
 
 	const ops = [];
 	let patches = dmp.patch_make(oldValue, newValue);
