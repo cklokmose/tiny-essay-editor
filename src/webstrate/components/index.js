@@ -1,10 +1,6 @@
-//import * as AutomergeWasm from "@automerge/automerge-wasm"
-import { next as Automerge } from "@automerge/automerge"
-import { Repo, isValidAutomergeUrl } from "@automerge/automerge-repo"
-import { IndexedDBStorageAdapter } from "@automerge/automerge-repo-storage-indexeddb"
-import { BrowserWebSocketClientAdapter } from "@automerge/automerge-repo-network-websocket"
-import { MessageChannelNetworkAdapter } from "@automerge/automerge-repo-network-messagechannel"
 await import("es-module-shims")
+
+console.log("I live")
 
 const documentProxyObj = {};
 const documentProxy = new Proxy(document, documentProxyObj);
@@ -17,7 +13,6 @@ import {coreMutation} from './webstrates/coreMutation.js';
 import {coreOpCreator} from './webstrates/coreOpCreator.js';
 import {coreDocument} from './webstrates/coreDocument.js';
 import {coreOpApplier} from './webstrates/coreOpApplier.js';
-import {coreAssets} from './webstrates/coreAssets.js';
 import {coreUtils} from './webstrates/coreUtils.js';
 import {corePathTree} from "./webstrates/corePathTree.js";
 import {coreJsonML} from "./webstrates/coreJsonML";
@@ -35,7 +30,6 @@ import {userObject} from "./webstrates/userObject";
 import {data} from "./webstrates/data";
 import {peerHandler} from "./webstrates/peerHandler";
 import {signalStream} from "./webstrates/signalStream";
-import {coreVersioning} from "./webstrates/coreVersioning";
 
 
 coreDOM.setDocuments(documentProxy, document, documentProxyObj);
