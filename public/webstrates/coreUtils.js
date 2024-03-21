@@ -2,7 +2,9 @@
 
 // Source: https://github.com/Webstrates/Webstrates/blob/master/client/webstrates/coreUtils.js
 
-import * as diffMatchPatch from "diff-match-patch";
+// import * as diffMatchPatch from "diff-match-patch";
+self.diffMatchPatch = window.diffMatchPatch
+
 const coreUtilsModule = {};
 
 let document;
@@ -380,7 +382,6 @@ coreUtilsModule.setWidOnElement = (node, wid) => {
 	});
 };
 
-const dmp = new diffMatchPatch.diff_match_patch();
 /**
  * Convert a number of string patches to OT operations.
  * @param  {JsonMLPath} path Base path for patches to apply to.
@@ -389,6 +390,8 @@ const dmp = new diffMatchPatch.diff_match_patch();
  * @return {Ops}             List of resulting operations.
  */
 coreUtilsModule.patchesToOps = function(path, oldValue, newValue) {
+	const dmp = new window.diffMatchPatch.diff_match_patch();
+
 	const ops = [];
 	let patches = dmp.patch_make(oldValue, newValue);
 	Object.keys(patches).forEach(function(i) {

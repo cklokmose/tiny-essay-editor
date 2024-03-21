@@ -2,7 +2,7 @@
 import {coreEvents} from './coreEvents.js';
 import {coreOpCreator} from './coreOpCreator.js';
 import {corePathTree} from './corePathTree.js';
-import { coreUtils } from "./coreUtils";
+import { coreUtils } from "./coreUtils.js";
 
 const coreDocumentModule = {};
 

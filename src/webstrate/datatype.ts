@@ -25,6 +25,7 @@ const getTitle = (doc: any) => {
 
 export const init = (doc: any) => {
   doc.title = "My Webstrate";
+  doc.dom = ["h1", {}, "hello"]
 };
 
 // TODO

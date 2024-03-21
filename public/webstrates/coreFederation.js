@@ -1,5 +1,5 @@
-import {BrowserWebSocketClientAdapter} from "@automerge/automerge-repo-network-websocket";
-import {globalObject} from "./globalObject";
+// import {BrowserWebSocketClientAdapter} from "@automerge/automerge-repo-network-websocket";
+import {globalObject} from "./globalObject.js";
 
 const coreFederationModule = {};
 
@@ -11,7 +11,8 @@ globalObject.publicObject.addSyncServer = (host) => {
 	});
 	const messageChannel = new MessageChannel();
 	navigator.serviceWorker.controller.postMessage({ type: "FEDERATE", host: host }, [messageChannel.port2])
-	return coreFederationModule.addSyncServerToRepo(`wss://${host}`, repo);
+	// return coreFederationModule.addSyncServerToRepo(`wss://${host}`, repo);
+	return null
 }
 
 const syncServers = [];

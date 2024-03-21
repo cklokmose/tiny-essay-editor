@@ -3,7 +3,8 @@ import { WebstrateDoc, WebstrateDocAnchor } from "../datatype";
 
 import { useEffect, useMemo, useRef } from "react";
 
-import diff_match_patch from "diff-match-patch";
+import * as diffMatchPatch from "diff-match-patch";
+import { setImmediate } from "setimmediate";
 import { next as Automerge } from "@automerge/automerge";
 
 import * as A from "@automerge/automerge/next";
@@ -14,6 +15,7 @@ export const Webstrate = ({
   docHeads,
   annotations = [],
 }: DocEditorProps<WebstrateDocAnchor, string>) => {
+  const handle = useHandle(docUrl)
   const [latestDoc] = useDocument<WebstrateDoc>(docUrl); // used to trigger re-rendering when the doc loads
   const frameRef = useRef(null);
   const repo = useRepo()
@@ -28,20 +30,13 @@ export const Webstrate = ({
     console.log("loaded", event)
     if (!frame) return
     frame.contentWindow.repo = repo;
-    frame.contentWindow.diffMatchPatch = diff_match_patch;
+    frame.contentWindow.diffMatchPatch = diffMatchPatch;
     frame.contentWindow.Automerge = Automerge;
+    frame.contentWindow.handle = handle
     frame.contentWindow.setImmediate = setImmediate;
-    frame.contentWindow.postMessage({msg: "repoSet", documentUrl: docUrl});
+    frame.contentWindow.postMessage({"repoSet": true})
     console.log("frame.contentWindow", frame.contentWindow)
   }
-
-  useEffect(() => {
-    if (!frameRef.current) return
-    
-    const frame = frameRef.current;
-    frame.addEventListener("load", () => {
-    });
-  }, [docUrl, frameRef, repo])
 
   if (!doc) {
     return null;
@@ -49,7 +44,7 @@ export const Webstrate = ({
 
   return (
     <div className="w-full h-full overflow-hidden">
-      <iframe onLoad={ onFrameLoad } src="./index.html"/>
+      <iframe onLoad={ onFrameLoad } src="./webstrate.html" style={{width: "100%", height: "100%"}}/>
     </div>
   );
 };
