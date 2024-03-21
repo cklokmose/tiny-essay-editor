@@ -3,6 +3,7 @@ import { AutomergeUrl, DocHandle } from "@automerge/automerge-repo";
 import { TLDrawDatatype } from "@/tldraw/datatype";
 import { DataGridDatatype } from "@/datagrid/datatype";
 import { EssayDatatype } from "@/tee/datatype";
+import { WebstrateDatatype } from "@/webstrate/datatype";
 import { EssayEditingBotDatatype } from "@/bots/datatype";
 import { Repo } from "@automerge/automerge-repo";
 import {
@@ -18,7 +19,9 @@ import { BotEditor } from "@/bots/BotEditor";
 import { TLDraw } from "@/tldraw/components/TLDraw";
 import { DataGrid } from "@/datagrid/components/DataGrid";
 import { KanbanBoard } from "@/kanban/components/Kanban";
+import { Webstrate } from "@/webstrate/components/Webstrate";
 import { DocEditorPropsWithDocType } from "@/patchwork/components/PatchworkDocEditor";
+
 
 export type CoreDataType<D> = {
   id: string;
@@ -81,6 +84,7 @@ export const docTypes: Record<
   datagrid: DataGridDatatype,
   bot: EssayEditingBotDatatype,
   kanban: KanbanBoardDatatype,
+  webstrate: WebstrateDatatype,
 } as const;
 
 export type DocType = keyof typeof docTypes;
@@ -100,6 +104,7 @@ export const toolsForDocTypes: Record<
   tldraw: [TLDraw],
   datagrid: [DataGrid],
   kanban: [KanbanBoard],
+  webstrate: [Webstrate],
 };
 
 export interface DocEditorProps<T, V> {
